@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MapPolygon, MapInfoWindow, MapGeocoder } from '@angular/google-maps';
+import { MapPolygon, MapGeocoder } from '@angular/google-maps';
 
 @Component({
   selector: 'app-google-map',
@@ -20,7 +20,6 @@ export class GoogleMapComponent implements OnInit {
     strokeWeight: 2,
   };
   searchQuery: string = '';
-  lastClickedCoord: google.maps.LatLngLiteral | null = null;
 
   constructor(private geocoder: MapGeocoder) {}
 
@@ -30,13 +29,11 @@ export class GoogleMapComponent implements OnInit {
     const path = event.latLng;
     if (path) {
       this.polygonCoords = [...this.polygonCoords, path.toJSON()];
-      this.lastClickedCoord = path.toJSON();
     }
   }
 
   onClearPolygon(): void {
     this.polygonCoords = [];
-    this.lastClickedCoord = null;
   }
 
   onSearchPlace(): void {
