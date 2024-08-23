@@ -1,0 +1,7 @@
+.google-maps {
+  cursor: pointer;
+}
+
+.google-maps-dragging {
+  cursor: grabbing;
+}
