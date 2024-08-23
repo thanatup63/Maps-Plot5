@@ -1,7 +1,7 @@
-.google-maps {
-  cursor: pointer;
+.google-map {
+  cursor: pointer; /* เมื่อไม่ได้ลาก */
 }
 
-.google-maps-dragging {
-  cursor: grabbing;
+.google-map.grabbing {
+  cursor: grabbing; /* เมื่อกำลังลาก */
 }

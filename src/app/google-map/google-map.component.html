@@ -9,10 +9,24 @@
     <div class="col-md-2">
       <button class="btn btn-danger" (click)="onClearPolygon()">Clear All</button>
     </div>
+    <div class="col-md-2">
+      <button class="btn btn-success" (click)="onCurrentLocation()">Current Location</button>
+    </div>
   </div>
   <div class="row mt-3">
     <div class="col-12">
-      <google-map [center]="mapCenter" [zoom]="zoom" height="500px" width="100%" (mapClick)="onPolygonEdit($event)">
+      <google-map
+        [center]="mapCenter"
+        [zoom]="zoom"
+        height="500px"
+        width="100%"
+        (mapClick)="onPolygonEdit($event)"
+        (dragstart)="onDragStart()"
+        (dragend)="onDragEnd()"
+        [class.grabbing]="isDragging"
+        class="google-map">
+
+        <map-marker *ngIf="currentLocationMarker" [position]="currentLocationMarker"></map-marker>
         <map-polygon [paths]="polygonCoords" [options]="polygonOptions"></map-polygon>
       </google-map>
     </div>
@@ -23,6 +37,9 @@
       <ul>
         <li *ngFor="let coord of polygonCoords">Lat: {{coord.lat}}, Lng: {{coord.lng}}</li>
       </ul>
+    </div>
+    <div class="col-12">
+      <h5>พื้นที่ทั้งหมด: {{areaInRai}} ไร่ {{areaInNgan}} งาน</h5> <!-- แสดงผลพื้นที่ -->
     </div>
   </div>
 </div>
